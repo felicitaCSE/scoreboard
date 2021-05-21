@@ -5,18 +5,25 @@
 
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
+
+
 html, body{
   height: 100%;
   font-weight: 800;
 }
 
-.heading{
-
+.Felicita{
   font-weight: 1000;
-  color:red;
-  font-family: 'Courier New', Courier, monospace;
-  font-size:250px;
+  font-family: 'Croissant One', cursive;
+  font-size:2em;
 }
+
+.live{
+  font-weight: 1000;
+  font-family: 'Croissant One', cursive;
+  font-size:2em;  
+}
+
 svg {
     display: block;
     font: 10.5em 'Montserrat';
