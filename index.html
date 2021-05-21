@@ -59,9 +59,9 @@
 			</div>`);
 			$.getJSON('https://spreadsheets.google.com/feeds/cells/1H_URv55VTpUYgH7ICG1pE_ssnbZlIAZ5-KAPhf5j_MM/1/public/full?alt=json', function(data) {
 
-		  var rows=data['feed']['gs$rowCount']['$t'];
-		  var cols=data['feed']['gs$colCount']['$t'];
-		  var arr=[...Array(8)].map(x=>Array(8).fill(0))  
+		  var rows=parseInt(data['feed']['gs$rowCount']['$t']);
+		  var cols=parseInt(data['feed']['gs$colCount']['$t']);
+		  var arr=[...Array(rows)].map(x=>Array(cols).fill(0))  
 		  //console.log(arr)
 		  for(let i=0;i<data['feed']['entry'].length;i++){
 			  row=data['feed']['entry'][i]['gs$cell']['row']-1
@@ -108,9 +108,9 @@
 					</tbody>
 				</table>
 			</div>`);
-		  var rows=data['feed']['gs$rowCount']['$t'];
-		  var cols=data['feed']['gs$colCount']['$t'];
-		  var arr=[...Array(8)].map(x=>Array(8).fill(0))  
+			var rows=parseInt(data['feed']['gs$rowCount']['$t']);
+		  var cols=parseInt(data['feed']['gs$colCount']['$t']);
+		  var arr=[...Array(rows)].map(x=>Array(cols).fill(0))  
 		  //console.log(arr)
 		  for(let i=0;i<data['feed']['entry'].length;i++){
 			  row=data['feed']['entry'][i]['gs$cell']['row']-1
@@ -141,7 +141,7 @@
 		
 	
 	run();
-	setInterval(rerun, 2000);
+	//setInterval(rerun, 2000);
 </script>
 
 	
