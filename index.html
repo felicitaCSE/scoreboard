@@ -2,41 +2,10 @@
 <html lang="en">
 <head>
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script>
-
-		$.getJSON('https://spreadsheets.google.com/feeds/cells/1H_URv55VTpUYgH7ICG1pE_ssnbZlIAZ5-KAPhf5j_MM/1/public/full?alt=json', function(data) {
-				
-			  var rows=data['feed']['gs$rowCount']['$t'];
-			  var cols=data['feed']['gs$colCount']['$t'];
-			  var arr=[...Array(8)].map(x=>Array(8).fill(0))  
-			  //console.log(arr)
-			  for(let i=0;i<data['feed']['entry'].length;i++){
-				  row=data['feed']['entry'][i]['gs$cell']['row']-1
-				  col=data['feed']['entry'][i]['gs$cell']['col']-1
-				  val=data['feed']['entry'][i]['gs$cell']['inputValue']
-				  //console.log(row,col,val);
-				  arr[row][col]=val;
-		
-			  }
-			  //console.log(arr);
-			headarr=arr[0]
-			for(let i=0;i<headarr.length;i++){
-				$(".head").append(`<th class="column100 column${i+1}" data-column="column${i+1}">${headarr[i]}</th>`)
-			}
-
-			for(let i=1;i<arr.length;i++){
-				ele=`<tr class="row100">`;
-					for(let j=0;j<arr[i].length;j++){
-						ele+=`<td class="column100 column${j+1}" data-column="column${j+1}">${arr[i][j]}</td>`
-					}
-				ele+=`</tr>`;
-				$('tbody').append(ele)
-				//console.log(ele);
-			}
-
-			});
-		
-	</script>
+	
+<body>
+<main>
+</main>
 </body>
 	<title>Table V03</title>
 	<meta charset="UTF-8">
@@ -57,24 +26,110 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-</head>
-<body>
+<script>
+	function run(){
+		$('main').append(`<div class="limiter">
+	<div class="container-table100">
+		<div class="wrap-table100">
+			<div class="table100 ver1 m-b-110">
+				<table data-vertable="ver1">
+					<thead>
+						<tr class="row100 head">
+
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>`);
+			$.getJSON('https://spreadsheets.google.com/feeds/cells/1H_URv55VTpUYgH7ICG1pE_ssnbZlIAZ5-KAPhf5j_MM/1/public/full?alt=json', function(data) {
+
+		  var rows=data['feed']['gs$rowCount']['$t'];
+		  var cols=data['feed']['gs$colCount']['$t'];
+		  var arr=[...Array(8)].map(x=>Array(8).fill(0))  
+		  //console.log(arr)
+		  for(let i=0;i<data['feed']['entry'].length;i++){
+			  row=data['feed']['entry'][i]['gs$cell']['row']-1
+			  col=data['feed']['entry'][i]['gs$cell']['col']-1
+			  val=data['feed']['entry'][i]['gs$cell']['inputValue']
+			  //console.log(row,col,val);
+			  arr[row][col]=val;
 	
-	<div class="limiter">
-		<div class="container-table100">
-			<div class="wrap-table100">
-				<div class="table100 ver1 m-b-110">
-					<table data-vertable="ver1">
-						<thead>
-							<tr class="row100 head">
+		  }
+		  //console.log(arr);
+		headarr=arr[0]
+		for(let i=0;i<headarr.length;i++){
+			$(".head").append(`<th class="column100 column${i+1}" data-column="column${i+1}">${headarr[i]}</th>`)
+		}
 
-							</tr>
-						</thead>
-						<tbody>
+		for(let i=1;i<arr.length;i++){
+			ele=`<tr class="row100">`;
+				for(let j=0;j<arr[i].length;j++){
+					ele+=`<td class="column100 column${j+1}" data-column="column${j+1}">${arr[i][j]}</td>`
+				}
+			ele+=`</tr>`;
+			$('tbody').append(ele)
+			//console.log(ele);
+		}
 
-						</tbody>
-					</table>
-				</div>
+		});
+	}
+	function rerun(){
+
+			$.getJSON('https://spreadsheets.google.com/feeds/cells/1H_URv55VTpUYgH7ICG1pE_ssnbZlIAZ5-KAPhf5j_MM/1/public/full?alt=json', function(data) {
+				document.querySelector('.limiter').remove();
+				$('main').append(`<div class="limiter">
+	<div class="container-table100">
+		<div class="wrap-table100">
+			<div class="table100 ver1 m-b-110">
+				<table data-vertable="ver1">
+					<thead>
+						<tr class="row100 head">
+
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+			</div>`);
+		  var rows=data['feed']['gs$rowCount']['$t'];
+		  var cols=data['feed']['gs$colCount']['$t'];
+		  var arr=[...Array(8)].map(x=>Array(8).fill(0))  
+		  //console.log(arr)
+		  for(let i=0;i<data['feed']['entry'].length;i++){
+			  row=data['feed']['entry'][i]['gs$cell']['row']-1
+			  col=data['feed']['entry'][i]['gs$cell']['col']-1
+			  val=data['feed']['entry'][i]['gs$cell']['inputValue']
+			  //console.log(row,col,val);
+			  arr[row][col]=val;
+	
+		  }
+		  //console.log(arr);
+		headarr=arr[0]
+		for(let i=0;i<headarr.length;i++){
+			$(".head").append(`<th class="column100 column${i+1}" data-column="column${i+1}">${headarr[i]}</th>`)
+		}
+
+		for(let i=1;i<arr.length;i++){
+			ele=`<tr class="row100">`;
+				for(let j=0;j<arr[i].length;j++){
+					ele+=`<td class="column100 column${j+1}" data-column="column${j+1}">${arr[i][j]}</td>`
+				}
+			ele+=`</tr>`;
+			$('tbody').append(ele)
+			//console.log(ele);
+		}
+
+		});
+	}
+		
+	
+	run();
+	setInterval(rerun, 2000);
+</script>
+</head>
 
 	
 	
