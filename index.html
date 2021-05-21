@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-	<title>Felicita CSE live Score</title>
+	<title>Felicita CSE Live Score</title>
+	<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -22,28 +25,26 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-
 </head>
 <body>
+
+	<p>
+  <span>
+    Felicita CSE
+  </span>
+</p>
 	
 <main>
-	
 </main>
 
-	<div class="bg"></div>
-<div class="bg bg2"></div>
-<div class="bg bg3"></div>
 
+	
 <script>
 	function run(){
-		$('main').append(`<div class="limiter content">
-			<div class="heading">
-			<h1 style="margin-top:200px">Felicita CSE</h1>
-			<h2>Live Score</h2>
-			<div>
-	<div style="margin-top:-80px" class="container-table100 ">
-		<div class="wrap-table100 ">
-			<div class="table100 ver1 m-b-110 ">
+		$('main').append(`<div class="limiter">
+	<div class="container-table100">
+		<div class="wrap-table100">
+			<div class="table100 ver1 m-b-110">
 				<table data-vertable="ver1">
 					<thead>
 						<tr class="row100 head">
@@ -91,9 +92,9 @@
 
 			$.getJSON('https://spreadsheets.google.com/feeds/cells/1H_URv55VTpUYgH7ICG1pE_ssnbZlIAZ5-KAPhf5j_MM/1/public/full?alt=json', function(data) {
 				document.querySelector('.limiter').remove();
-				$('main').append(`<div class="limiter content">
+				$('main').append(`<div class="limiter">
 	<div class="container-table100">
-		<div class="wrap-table100 ">
+		<div class="wrap-table100">
 			<div class="table100 ver1 m-b-110">
 				<table data-vertable="ver1">
 					<thead>
@@ -141,7 +142,6 @@
 	run();
 	setInterval(rerun, 2000);
 </script>
-</body>
 
 	
 	
@@ -155,6 +155,7 @@
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+</body>
 				
 
 </html>
