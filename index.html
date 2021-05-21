@@ -57,7 +57,7 @@
 					</tbody>
 				</table>
 			</div>`);
-			$.getJSON('https://spreadsheets.google.com/feeds/cells/1H_URv55VTpUYgH7ICG1pE_ssnbZlIAZ5-KAPhf5j_MM/1/public/full?alt=json', function(data) {
+			$.getJSON('https://spreadsheets.google.com/feeds/cells/1os1Rs6POXZnrqPvayTjAz21TqsGHKy9tTXy1SzpKcN4/1/public/full?alt=json', function(data) {
 
 		  var rows=parseInt(data['feed']['gs$rowCount']['$t']);
 		  var cols=parseInt(data['feed']['gs$colCount']['$t']);
@@ -91,7 +91,7 @@
 	}
 	function rerun(){
 
-			$.getJSON('https://spreadsheets.google.com/feeds/cells/1H_URv55VTpUYgH7ICG1pE_ssnbZlIAZ5-KAPhf5j_MM/1/public/full?alt=json', function(data) {
+			$.getJSON('https://spreadsheets.google.com/feeds/cells/1os1Rs6POXZnrqPvayTjAz21TqsGHKy9tTXy1SzpKcN4/1/public/full?alt=json', function(data) {
 				document.querySelector('.limiter').remove();
 				$('main').append(`<div class="limiter">
 	<div class="container-table100">
