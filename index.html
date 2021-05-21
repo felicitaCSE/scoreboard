@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script>
+
+		$.getJSON('https://spreadsheets.google.com/feeds/cells/1H_URv55VTpUYgH7ICG1pE_ssnbZlIAZ5-KAPhf5j_MM/1/public/full?alt=json', function(data) {
+				
+			  var rows=data['feed']['gs$rowCount']['$t'];
+			  var cols=data['feed']['gs$colCount']['$t'];
+			  var arr=[...Array(8)].map(x=>Array(8).fill(0))  
+			  //console.log(arr)
+			  for(let i=0;i<data['feed']['entry'].length;i++){
+				  row=data['feed']['entry'][i]['gs$cell']['row']-1
+				  col=data['feed']['entry'][i]['gs$cell']['col']-1
+				  val=data['feed']['entry'][i]['gs$cell']['inputValue']
+				  //console.log(row,col,val);
+				  arr[row][col]=val;
+		
+			  }
+			  //console.log(arr);
+			headarr=arr[0]
+			for(let i=0;i<headarr.length;i++){
+				$(".head").append(`<th class="column100 column${i+1}" data-column="column${i+1}">${headarr[i]}</th>`)
+			}
+
+			for(let i=1;i<arr.length;i++){
+				ele=`<tr class="row100">`;
+					for(let j=0;j<arr[i].length;j++){
+						ele+=`<td class="column100 column${j+1}" data-column="column${j+1}">${arr[i][j]}</td>`
+					}
+				ele+=`</tr>`;
+				$('tbody').append(ele)
+				//console.log(ele);
+			}
+
+			});
+		
+	</script>
+</body>
+	<title>Table V03</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+					<table data-vertable="ver1">
+						<thead>
+							<tr class="row100 head">
+
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+
+	
+	
+
+<!--===============================================================================================-->	
+
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+				
+
+</html>
