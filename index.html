@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Croissant+One&display=swap" rel="stylesheet">
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<title>Felicita CSE Live Score</title>
 	<div class="bg"></div>
@@ -11,28 +9,15 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
+
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
 <body>
-<div class="heading">
-	<spam class="Felicita">Felicita CSE</spam>
-<spam class="Live">Live</spam>
-</div>	
+
+<h1><span class="blue">&lt;</span>Felicita<span class="blue">&gt;</span> <span class="yellow">CSE</pan></h1>
+	<h2>a fun interactive session by Department of<a> <i style="color: aquamarine;">CSE</i></a></h2>
+
 <main>
 
 </main>
@@ -41,22 +26,17 @@
 	
 <script>
 	function run(){
-		$('main').append(`<div class="limiter">
-
-	<div class="container-table100">
-		<div class="wrap-table100">
-			<div class="table100 ver1 m-b-110">
-				<table data-vertable="ver1">
+		$('main').append(`
+			<table class="container">
 					<thead>
-						<tr class="row100 head">
+						<tr class="head">
 
 						</tr>
 					</thead>
 					<tbody>
 
 					</tbody>
-				</table>
-			</div>`);
+				</table>`);
 			$.getJSON('https://spreadsheets.google.com/feeds/cells/1os1Rs6POXZnrqPvayTjAz21TqsGHKy9tTXy1SzpKcN4/1/public/full?alt=json', function(data) {
 
 		  var rows=parseInt(data['feed']['gs$rowCount']['$t']);
@@ -74,13 +54,13 @@
 		  //console.log(arr);
 		headarr=arr[0]
 		for(let i=0;i<headarr.length;i++){
-			$(".head").append(`<th class="column100 column${i+1}" data-column="column${i+1}">${headarr[i]}</th>`)
+			$(".head").append(`<th><h1 style="color:white;">${headarr[i]}</h1></th>`)
 		}
 
 		for(let i=1;i<arr.length;i++){
-			ele=`<tr class="row100">`;
+			ele=`<tr>`;
 				for(let j=0;j<arr[i].length;j++){
-					ele+=`<td class="column100 column${j+1}" data-column="column${j+1}">${arr[i][j]}</td>`
+					ele+=`<td>${arr[i][j]}</td>`
 				}
 			ele+=`</tr>`;
 			$('tbody').append(ele)
@@ -92,23 +72,19 @@
 	function rerun(){
 
 			$.getJSON('https://spreadsheets.google.com/feeds/cells/1os1Rs6POXZnrqPvayTjAz21TqsGHKy9tTXy1SzpKcN4/1/public/full?alt=json', function(data) {
-				document.querySelector('.limiter').remove();
-				$('main').append(`<div class="limiter">
-	<div class="container-table100">
-		<div class="wrap-table100">
-			<div class="table100 ver1 m-b-110">
-				<table data-vertable="ver1">
+				document.querySelector('.container').remove();
+				$('main').append(`
+			<table class="container">
 					<thead>
-						<tr class="row100 head">
+						<tr class="head">
 
 						</tr>
 					</thead>
 					<tbody>
 
 					</tbody>
-				</table>
-			</div>`);
-			var rows=parseInt(data['feed']['gs$rowCount']['$t']);
+				</table>`);
+				var rows=parseInt(data['feed']['gs$rowCount']['$t']);
 		  var cols=parseInt(data['feed']['gs$colCount']['$t']);
 		  var arr=[...Array(rows)].map(x=>Array(cols).fill(0))  
 		  //console.log(arr)
@@ -123,39 +99,33 @@
 		  //console.log(arr);
 		headarr=arr[0]
 		for(let i=0;i<headarr.length;i++){
-			$(".head").append(`<th class="column100 column${i+1}" data-column="column${i+1}">${headarr[i]}</th>`)
+			$(".head").append(`<th><h1 style="color:white;">${headarr[i]}</h1></th>`)
 		}
 
 		for(let i=1;i<arr.length;i++){
-			ele=`<tr class="row100">`;
+			ele=`<tr>`;
 				for(let j=0;j<arr[i].length;j++){
-					ele+=`<td class="column100 column${j+1}" data-column="column${j+1}">${arr[i][j]}</td>`
+					ele+=`<td>${arr[i][j]}</td>`
 				}
 			ele+=`</tr>`;
 			$('tbody').append(ele)
 			//console.log(ele);
 		}
-
-		});
+			
+			
+			
+			
+			
+			});
+			
 	}
 		
-	
+
 	run();
 	setInterval(rerun, 2000);
+
 </script>
 
-	
-	
-
-<!--===============================================================================================-->	
-
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
 </body>
 				
 
