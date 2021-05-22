@@ -26,6 +26,14 @@
 	
 <script>
 	function run(){
+	
+
+
+				//Edit this
+			$.getJSON('https://spreadsheets.google.com/feeds/cells/1os1Rs6POXZnrqPvayTjAz21TqsGHKy9tTXy1SzpKcN4/1/public/full?alt=json', function(data) {
+	if(document.querySelector('.container')){
+			document.querySelector('.container').remove();
+		}
 		$('main').append(`
 			<table class="container">
 					<thead>
@@ -37,10 +45,6 @@
 
 					</tbody>
 				</table>`);
-
-				//Edit this
-			$.getJSON('https://spreadsheets.google.com/feeds/cells/1os1Rs6POXZnrqPvayTjAz21TqsGHKy9tTXy1SzpKcN4/1/public/full?alt=json', function(data) {
-
 		  var rows=parseInt(data['feed']['gs$rowCount']['$t']);
 		  var cols=parseInt(data['feed']['gs$colCount']['$t']);
 		  var arr=[...Array(rows)].map(x=>Array(cols).fill(0))  
@@ -57,7 +61,8 @@
 		  //console.log(arr);
 		headarr=arr[0]
 		for(let i=0;i<headarr.length;i++){
-			$(".head").append(`<th><h1 style="color:white;">${headarr[i]}</h1></th>`)
+			if(headarr[i].length<4) $(".head").append(`<th><h1 style="color:white;"> ${headarr[i]} </h1></th>`)
+			else $(".head").append(`<th><h1 style="color:white;">${headarr[i]}</h1></th>`)
 		}
 
 		for(let i=1;i<arr.length;i++){
@@ -80,68 +85,11 @@
 
 		});
 	}
-	function rerun(){
 
-
-		///Edit this link
-			$.getJSON('https://spreadsheets.google.com/feeds/cells/1os1Rs6POXZnrqPvayTjAz21TqsGHKy9tTXy1SzpKcN4/1/public/full?alt=json', function(data) {
-				document.querySelector('.container').remove();
-				$('main').append(`
-			<table class="container">
-					<thead>
-						<tr class="head">
-
-						</tr>
-					</thead>
-					<tbody>
-
-					</tbody>
-				</table>`);
-				var rows=parseInt(data['feed']['gs$rowCount']['$t']);
-		  var cols=parseInt(data['feed']['gs$colCount']['$t']);
-		  var arr=[...Array(rows)].map(x=>Array(cols).fill(0))  
-		  var totals=[...Array(cols-1)].fill(0);
-		  //console.log(arr)
-		  for(let i=0;i<data['feed']['entry'].length;i++){
-			  row=data['feed']['entry'][i]['gs$cell']['row']-1
-			  col=data['feed']['entry'][i]['gs$cell']['col']-1
-			  val=data['feed']['entry'][i]['gs$cell']['inputValue']
-			  //console.log(row,col,val);
-			  arr[row][col]=val;
-	
-		  }
-		  //console.log(arr);
-		headarr=arr[0]
-		for(let i=0;i<headarr.length;i++){
-			$(".head").append(`<th><h1 style="color:white;">${headarr[i]}</h1></th>`)
-		}
-
-		for(let i=1;i<arr.length;i++){
-			ele=`<tr>`;
-				for(let j=0;j<arr[i].length;j++){
-					ele+=`<td>${arr[i][j]}</td>`
-					if(j>0) totals[j-1]+=parseInt(arr[i][j]);
-				}
-			ele+=`</tr>`;
-			$('tbody').append(ele)
-			//console.log(ele);
-		}
-		ele="<tr><td><strong style='color:white;'>Total</strong></td>";
-		for(let k=0;k<totals.length;k++) ele+=`<td><strong style='color:#7FFF00'>${totals[k]}</strong></td>`;
-		ele+="</tr>";
-		$('tbody').append(ele)
-		//console.log(totals)
 			
-			
-			
-			
-			});
-			
-	}
-		
 
 	run();
-	setInterval(rerun, 2000);
+	setInterval(run, 2000);
 
 </script>
 
