@@ -37,6 +37,8 @@
 
 					</tbody>
 				</table>`);
+
+				//Edit this
 			$.getJSON('https://spreadsheets.google.com/feeds/cells/1os1Rs6POXZnrqPvayTjAz21TqsGHKy9tTXy1SzpKcN4/1/public/full?alt=json', function(data) {
 
 		  var rows=parseInt(data['feed']['gs$rowCount']['$t']);
@@ -59,8 +61,10 @@
 
 		for(let i=1;i<arr.length;i++){
 			ele=`<tr>`;
+				
 				for(let j=0;j<arr[i].length;j++){
 					ele+=`<td>${arr[i][j]}</td>`
+
 				}
 			ele+=`</tr>`;
 			$('tbody').append(ele)
@@ -71,6 +75,8 @@
 	}
 	function rerun(){
 
+
+		///Edit this link
 			$.getJSON('https://spreadsheets.google.com/feeds/cells/1os1Rs6POXZnrqPvayTjAz21TqsGHKy9tTXy1SzpKcN4/1/public/full?alt=json', function(data) {
 				document.querySelector('.container').remove();
 				$('main').append(`
