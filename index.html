@@ -44,6 +44,7 @@
 		  var rows=parseInt(data['feed']['gs$rowCount']['$t']);
 		  var cols=parseInt(data['feed']['gs$colCount']['$t']);
 		  var arr=[...Array(rows)].map(x=>Array(cols).fill(0))  
+		  var totals=[...Array(cols-1)].fill(0);
 		  //console.log(arr)
 		  for(let i=0;i<data['feed']['entry'].length;i++){
 			  row=data['feed']['entry'][i]['gs$cell']['row']-1
@@ -64,12 +65,18 @@
 				
 				for(let j=0;j<arr[i].length;j++){
 					ele+=`<td>${arr[i][j]}</td>`
+					if(j>0) totals[j-1]+=parseInt(arr[i][j]);
 
 				}
 			ele+=`</tr>`;
 			$('tbody').append(ele)
 			//console.log(ele);
 		}
+		ele="<tr><td><strong style='color:white;'>Total</strong></td>";
+		for(let k=0;k<totals.length;k++) ele+=`<td><strong style='color:#7FFF00'>${totals[k]}</strong></td>`;
+		ele+="</tr>";
+		$('tbody').append(ele)
+		//console.log(totals)
 
 		});
 	}
@@ -93,6 +100,7 @@
 				var rows=parseInt(data['feed']['gs$rowCount']['$t']);
 		  var cols=parseInt(data['feed']['gs$colCount']['$t']);
 		  var arr=[...Array(rows)].map(x=>Array(cols).fill(0))  
+		  var totals=[...Array(cols-1)].fill(0);
 		  //console.log(arr)
 		  for(let i=0;i<data['feed']['entry'].length;i++){
 			  row=data['feed']['entry'][i]['gs$cell']['row']-1
@@ -112,12 +120,17 @@
 			ele=`<tr>`;
 				for(let j=0;j<arr[i].length;j++){
 					ele+=`<td>${arr[i][j]}</td>`
+					if(j>0) totals[j-1]+=parseInt(arr[i][j]);
 				}
 			ele+=`</tr>`;
 			$('tbody').append(ele)
 			//console.log(ele);
 		}
-			
+		ele="<tr><td><strong style='color:white;'>Total</strong></td>";
+		for(let k=0;k<totals.length;k++) ele+=`<td><strong style='color:#7FFF00'>${totals[k]}</strong></td>`;
+		ele+="</tr>";
+		$('tbody').append(ele)
+		//console.log(totals)
 			
 			
 			
